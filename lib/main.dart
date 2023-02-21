@@ -4,11 +4,15 @@ import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:bookly_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:bloc/bloc.dart';
+import 'core/utils/serive_locator.dart';
 import 'features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
+import 'features/home/presentation/manger/newset_books_cubit/newset_books_cubit.dart';
 
 void main() {
+  setupServiceLocator();
   runApp(const BooklyApp());
 }
 
@@ -21,25 +25,15 @@ class BooklyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => FeaturedBooksCubit(
-            HomeRepoImpl(
-              ApiService(
-                Dio(),
-              ),
-            ),
+            getIt.get<HomeRepoImpl>(),
           ),
         ),
         BlocProvider(
           create: (context) => NewsetBooksCubit(
-            HomeRepoImpl(
-              ApiService(
-                Dio(),
-              ),
-            ),
+            getIt.get<HomeRepoImpl>(),
           ),
         ),
       ],
-      child: Container(),
-    )(
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
