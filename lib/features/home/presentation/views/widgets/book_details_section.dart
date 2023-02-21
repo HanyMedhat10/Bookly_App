@@ -1,13 +1,19 @@
-import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_item.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_item.dart';
 
 import '../../../../../core/utils/styles.dart';
 import '../../../../Splash/presentation/view_models/views/widgets/book_rating.dart';
 import '../../../../Splash/presentation/view_models/views/widgets/books_action.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({Key? key}) : super(key: key);
-
+  const BookDetailsSection({
+    Key? key,
+    required this.book,
+  }) : super(key: key);
+  final BookModel book;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -15,16 +21,16 @@ class BookDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * .2),
-          child: const CustomBookImage(
-              imageUrl:
-                  'https://www.google.com/imgres?imgurl=https%3A%2F%2Fstatic01.nyt.com%2Fimages%2F2022%2F12%2F30%2Fbooks%2F27JANBOOKS%2F27JANBOOKS-mediumSquareAt3X.jpg&imgrefurl=https%3A%2F%2Fwww.nytimes.com%2F2022%2F12%2F29%2Fbooks%2Fjanuary-2023-books.html&tbnid=7s1kuoTaxeXKSM&vet=12ahUKEwjPp53266X9AhUpTaQEHThqBSEQMyg7egQIARBW..i&docid=IY0lvaPgyWpvuM&w=1800&h=1800&q=Book%20image&ved=2ahUKEwjPp53266X9AhUpTaQEHThqBSEQMyg7egQIARBW'),
+          child: CustomBookImage(
+              imageUrl: book.volumeInfo.imageLinks?.thumbnail ?? ''),
         ),
         const SizedBox(
           height: 40,
         ),
-        const Text(
-          'The Jungle Book',
+        Text(
+          book.volumeInfo.title!,
           style: Styles.textStyle30,
+          textAlign: TextAlign.center,
         ),
         const SizedBox(
           height: 4,
@@ -32,7 +38,7 @@ class BookDetailsSection extends StatelessWidget {
         Opacity(
           opacity: .7,
           child: Text(
-            'Rudyard Kipling',
+            book.volumeInfo.authors?[0] ?? '',
             style: Styles.textStyle18.copyWith(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w500,
@@ -43,10 +49,10 @@ class BookDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 18,
         ),
-        const BookRating(
+        BookRating(
           mainAxisAlignment: MainAxisAlignment.center,
-          count: 245,
-          rating: 4,
+          count: book.volumeInfo.ratingsCount ?? 0,
+          rating: book.volumeInfo.averageRating ?? 0,
         ),
         const SizedBox(
           height: 37,
