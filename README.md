@@ -1,11 +1,11 @@
 <div align="center">
  
   
-  <img src="./readme-images/project-logo.png" />
+  <img src="./assets/images/Logo.png" />
 
   <h2 align="center">Bookly app - Mobile Application </h2>
 
-  Bookly is fully responsive reading  books, <br />Responsive for all devices, built using Dart and Flutter.
+  Bookly is fully responsive Library Application, <br />Responsive for all devices, built using Dart and Flutter.
 </div>
 
 <br />
