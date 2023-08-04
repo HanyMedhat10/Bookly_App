@@ -1,7 +1,6 @@
 import 'package:bookly_app/core/utils/function/laucnh_url.dart';
 import 'package:bookly_app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../home/data/models/book_model/book_model.dart';
 
@@ -11,7 +10,7 @@ class BooksAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
           const Expanded(
