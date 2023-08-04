@@ -1,8 +1,14 @@
-# bookly_app
+<div align="center">
+ 
+  
+  <img src="./assets/images/Logo.png" />
 
-A new Flutter project.
+  <h2 align="center">Bookly app - Mobile Application </h2>
 
-## Getting Started
+  Bookly is fully responsive Library Application, <br />Responsive for all devices, built using Dart and Flutter.
+</div>
+
+<br />
 
 This project is a starting point for a Flutter application.
 
